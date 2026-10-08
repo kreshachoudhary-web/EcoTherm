@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EcoTherm – Turning Kitchen Waste into Energy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f4da;--ink:#24510b;--green:#3f7d12;--soft:#5d7a45;--yellow:#fad817;--orange:#e98c10;--red:#c33054;--teal:#31a9bb;--pink:#f0b0d0;--line:#c5ccaa;--card:#fffdf0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14210c;--ink:#e9f0c8;--green:#8fcf4a;--soft:#b5c79a;--line:#34502a;--card:#1c2f12}}
+:root[data-theme="dark"]{--bg:#14210c;--ink:#e9f0c8;--green:#8fcf4a;--soft:#b5c79a;--line:#34502a;--card:#1c2f12}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 'Patrick Hand',cursive;overflow-x:hidden;
+background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:48px 48px;background-attachment:fixed;background-blend-mode:soft-light}
+h1,h2,h3{font-family:'Bebas Neue',sans-serif;font-weight:400;color:var(--green);line-height:.95;margin:0}
+h2{font-size:clamp(44px,7vw,84px)}h3{font-size:28px;letter-spacing:.5px}
+section{padding:90px 6vw;max-width:1200px;margin:auto}
+p{color:var(--soft);margin:.6em 0}
+.scrib{font-family:Caveat,cursive;font-size:30px;color:var(--green)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index9;z-index:9;display:flex;justify-content:space-between;align-items:center;padding:12px 6vw;background:var(--bg);border-bottom:2px solid var(--green)}
+nav b{font-family:'Bebas Neue';font-size:30px;color:var(--green);letter-spacing:1px}
+nav div a{margin-left:18px;color:var(--ink);text-decoration:none;font-size:18px}nav div a:hover{color:var(--red)}
+@media(max-width:760px){nav div a:not(.cta){display:none}}
+.btn{display:inline-block;background:var(--yellow);color:#24510b;font-family:'Bebas Neue';font-size:26px;padding:8px 26px;text-decoration:none;border:0;cursor:pointer;box-shadow:4px 4px 0 var(--green);transition:.15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--green)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:82vh}
+.hero{grid-template-columns:1fr!important;min-height:70vh}
+.hero h1{font-size:clamp(70px,13vw,160px);text-shadow:5px 5px 0 var(--yellow)}
+.tag{display:inline-block;background:var(--red);color:#fff;padding:2px 14px;letter-spacing:2px;font-size:18px;transform:rotate(-2deg)}
+.shape{filter:drop-shadow(6px 6px 0 rgba(36,81,11,.25))}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:34px}
+.stat{background:var(--card);border:2px solid var(--green);padding:14px 18px;transform:rotate(-1deg)}
+.stat:nth-child(2){transform:rotate(1.2deg)}.stat b{font:48px 'Bebas Neue';color:var(--red);display:block;line-height:1}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;margin-top:34px}
+.col{padding:10px 26px;border-left:3px solid var(--green)}.col:first-child{border:0;padding-left:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:30px;counter-reset:s}
+.step{background:var(--card);border:2px solid var(--green);padding:20px;position:relative;cursor:pointer;transition:.2s}
+.step:hover,.step.on{background:var(--yellow);transform:translateY(-6px) rotate(-1deg)}
+.step:hover p,.step.on p{color:#24510b}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-18px;left:14px;background:var(--red);color:#fff;font:28px 'Bebas Neue';width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px;align-items:center}
+@media(max-width:860px){.lab{grid-template-columns:1fr}}
+.panel{background:var(--card);border:2px solid var(--green);padding:24px}
+input[type=range]{width:100%;accent-color:var(--red)}
+.read{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}.read div{flex:1;min-width:110px;border:2px dashed var(--green);padding:8px;text-align:center}
+.read b{font:40px 'Bebas Neue';color:var(--red);display:block;line-height:1}
+.bar{height:16px;background:var(--line);border-radius:8px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--yellow),var(--orange),var(--red));transition:width .3s}
+.case{background:var(--green);color:#f8f4da;margin:0 -6vw;padding:60px 6vw;border-radius:6px}
+.case h2{color:var(--yellow)}.case p{color:#e4ecc6}.case h3{color:var(--yellow)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px;align-items:start}
+@media(max-width:860px){.cg{grid-template-columns:1fr}}
+figure{margin:0}figcaption{font-size:16px;margin-top:6px;opacity:.85;font-style:italic}
+.case svg,.pic svg{width:100%;height:auto;border:3px solid var(--yellow);display:block}
+.pic svg{border-color:var(--green)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.facts div{background:rgba(0,0,0,.2);padding:10px;text-align:center}.facts b{font:40px 'Bebas Neue';color:var(--yellow);display:block;line-height:1}
+.tl{border-left:4px solid var(--yellow);padding-left:20px;margin-top:20px}.tl div{margin-bottom:16px;position:relative}
+.tl div::before{content:'';position:absolute;left:-30px;top:8px;width:14px;height:14px;background:var(--red);border-radius:50%}
+.tl b{color:var(--yellow);font:26px 'Bebas Neue'}
+.note{font-size:16px;opacity:.8;margin-top:16px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:26px}
+.card{background:var(--card);border:2px solid var(--green);padding:22px;box-shadow:6px 6px 0 var(--yellow)}
+details{border-bottom:2px solid var(--line);padding:12px 0}summary{cursor:pointer;font-size:24px;color:var(--green)}
+.parts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.parts span{border:2px solid var(--green);padding:4px 14px;background:var(--card)}
+.parts span:nth-child(3n){background:var(--pink);color:#24510b}.parts span:nth-child(3n+1){background:var(--yellow);color:#24510b}
+footer{text-align:center;padding:60px 6vw 80px;border-top:3px solid var(--green)}
+footer .big{font:clamp(40px,8vw,90px) 'Bebas Neue';color:var(--green);line-height:1}
+.rv{opacity:0;transform:translateY(30px);transition:.7s}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+.flow{stroke-dasharray:8 8;animation:fl 1s linear infinite}@keyframes fl{to{stroke-dashoffset:-16}}
+.bob{animation:bob 4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px)}}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;margin-top:30px}.pol{background:#fffdf0;padding:10px 10px 6px;box-shadow:5px 5px 0 rgba(36,81,11,.35);transform:rotate(var(--r));transition:.2s}.pol:hover{transform:rotate(0) scale(1.03)}.pol svg{width:100%;height:auto;display:block}.pol figcaption{font-size:20px;color:#24510b;text-align:center;opacity:1;font-style:normal;padding:6px}
+</style>
+</head>
+<body>
+<nav><b>EcoTherm</b><div><a href="#how">How it works</a><a href="#sim">Heat vs voltage</a><a href="#lab">Our model</a><a href="#case">Kolkata case study</a><a href="#faq">FAQ</a><a class="cta btn" style="font-size:20px;padding:2px 16px;margin-left:18px" href="#team">Team</a></div></nav>
+
+<section class="hero">
+<div class="rv">
+<span class="tag">REDUCE. REUSE. RETHINK.</span>
+<div class="scrib" style="margin-top:14px">going from waste → to watts</div>
+<h1>ECOTHERM</h1>
+<p style="font-size:24px;max-width:520px">Your kitchen scraps already make heat while they rot. We catch a little of it and turn it into electricity.</p>
+<p style="margin-bottom:24px"><a class="btn" href="#lab">See our model</a> &nbsp; <a href="#case" style="color:var(--red)">See the Kolkata case study →</a></p>
+</div>
+
+</section>
+
+<section>
+<h2 class="rv">THE PROBLEM</h2>
+<div class="cols rv">
+<div class="col"><h3>Mountains of food waste</h3><p>Homes, schools and restaurants throw out peels, scraps and leftovers every day. Most of it ends up in landfills.</p></div>
+<div class="col"><h3>Heat that just escapes</h3><p>When microbes break down organic waste, the pile warms up. That heat leaks into the air and does nothing.</p></div>
+<div class="col"><h3>Our idea</h3><p>Hold on to some of that heat, run it through a thermoelectric generator, and show a small electrical output.</p></div>
+</div>
+<div class="stats rv">
+<div class="stat"><b data-n="50">0</b>% of urban Indian waste is typically organic (approx.)</div>
+<div class="stat"><b data-n="60">0</b>°C a compost heap can reach at its peak</div>
+<div class="stat"><b data-n="0">0</b> extra fuel needed. The waste is the heat source</div>
+</div>
+</section>
+
+<section id="how">
+<h2 class="rv">HOW DOES IT WORK</h2>
+<p class="rv">Tap a step to see what's happening.</p>
+<div class="steps rv" id="steps">
+<div class="step on" data-t="Microorganisms feed on fruit peels and vegetable scraps inside the insulated chamber. Their metabolism releases heat."><h3>Waste decomposes</h3><p>Microbes break down the scraps and warm the pile.</p></div>
+<div class="step" data-t="A metal element (copper or aluminium conducts well) touches the warm waste and carries the heat to the hot face of the TEG module."><h3>Metal carries heat</h3><p>The heat exchanger moves heat toward the TEG.</p></div>
+<div class="step" data-t="The outer face of the TEG sits in room air, so it stays cooler. A gap of some degrees between the two faces is the whole trick."><h3>A gap appears</h3><p>One side hot, one side cool: a temperature difference.</p></div>
+<div class="step" data-t="Because of the Seebeck effect, the temperature difference pushes charge through the thermoelectric material and we read a small voltage."><h3>Voltage out</h3><p>The TEG converts ΔT into electricity.</p></div>
+</div>
+<div class="panel rv" style="margin-top:22px;background:var(--yellow);color:#24510b"><span id="stepText" style="color:#24510b">Microorganisms feed on fruit peels and vegetable scraps inside the insulated chamber. Their metabolism releases heat.</span></div>
+</section>
+
+<section id="sim">
+<h2 class="rv">HEAT VS VOLTAGE</h2>
+<p class="rv">Slide the waste temperature and watch the voltage change. Room temperature is fixed at 30°C.</p>
+<div class="lab rv" style="grid-template-columns:1fr;max-width:700px">
+<div class="panel">
+<label style="font-size:24px">Waste temperature: <b id="tw">45</b>°C</label>
+<input id="sw" type="range" min="30" max="65" value="45">
+<div class="read"><div><b id="dT">15</b>Temp. difference (°C)</div><div><b id="vv">0.00</b>Voltage (approx. V)</div></div>
+<div class="bar"><i id="bar"></i></div>
+<p id="verdict" style="margin-bottom:0"></p>
+<p class="note" style="color:var(--soft)">Simplified model (V ≈ N × S × ΔT for a typical TEG module). It shows the trend, not our exact readings.</p>
+</div>
+
+</div>
+</section>
+
+<section id="lab">
+<h2 class="rv">OUR MODEL</h2>
+<p class="rv" style="max-width:760px">EcoTherm is a small working demonstration of how heat from decomposing kitchen waste can be captured and turned into a little electrical energy. It has six main parts.</p>
+<div class="two rv"><div class="card"><h3>Plastic decomposition chamber</h3><p>Holds the waste and keeps the heat inside while the microbes work.</p></div><div class="card"><h3>Biodegradable kitchen waste</h3><p>Fruit peels and vegetable scraps. This is the heat source, so no fuel is needed.</p></div><div class="card"><h3>Metal heat-transfer element</h3><p>Metal conducts heat well, so it carries warmth from the waste to the TEG.</p></div><div class="card"><h3>TEG module</h3><p>The thermoelectric generator. It turns the temperature difference between its two faces into a small voltage.</p></div><div class="card"><h3>Insulation</h3><p>Keeps heat from leaking out, so the hot side stays as warm as possible.</p></div><div class="card"><h3>Thermometer</h3><p>Lets us track how warm the waste gets over time.</p></div></div>
+<h3 class="rv" style="margin-top:50px;font-size:40px">HOW THE MODEL RUNS</h3>
+<div class="steps rv">
+<div class="step"><h3>Load</h3><p>Biodegradable waste goes into the insulated chamber.</p></div>
+<div class="step"><h3>Warm up</h3><p>Microorganisms start breaking it down and the pile heats up.</p></div>
+<div class="step"><h3>Transfer</h3><p>The metal element carries that heat to one face of the TEG.</p></div>
+<div class="step"><h3>Generate</h3><p>The other face stays cooler, and the TEG produces a small voltage.</p></div>
+</div>
+<div class="two rv"><div class="card"><h3>What makes it work</h3><p>The bigger the temperature difference across the TEG, the more voltage it gives. That's why good insulation on the hot side and cooling on the other side matter.</p></div>
+<div class="card"><h3>Be honest about the limits</h3><p>A small amount of waste makes a small amount of heat. Our model is a proof of concept that shows the principle, and it will not power your house.</p></div></div>
+</section>
+
+<section id="case">
+<div class="case">
+<h2 class="rv">CASE STUDY: KOLKATA &amp; THE EAST KOLKATA WETLANDS</h2>
+<p class="rv scrib" style="color:var(--yellow)">a city that already treats waste as a resource</p>
+<div class="cg" style="grid-template-columns:1fr;max-width:820px">
+<div class="rv"><h3>Why Kolkata?</h3>
+<p>The East Kolkata Wetlands (EKW) are a Ramsar-listed wetland system on the city's eastern edge. For decades, local communities have used the city's sewage and organic waste to feed fish ponds and vegetable plots. It is one of the world's best-known examples of a living circular economy, and it sits right beside the Dhapa landfill, where much of the city's solid waste ends up.</p>
+<p>EcoTherm fits this story: if organic waste is already a resource here, can it also be a small source of energy?</p>
+<div class="facts"><div><b>2002</b>Ramsar site status</div><div><b>~12,500</b>hectares (approx.)</div><div><b>~50%</b>of city waste is organic (approx.)</div></div>
+</div>
+
+</div>
+
+<div class="cg" style="margin-top:44px">
+<div class="rv"><h3>Proposed pilot: a housing society in Kolkata</h3>
+<p>Imagine a 100-flat housing society that segregates its wet waste. Instead of sending it all to the landfill, some goes to a few EcoTherm-style units that monitor temperature and power a small LED display or sensor as a visible demonstration.</p>
+<div class="tl">
+<div><b>Month 1</b><br>Waste segregation drive and awareness workshop.</div>
+<div><b>Month 2–3</b><br>Install insulated chambers, log temperature daily.</div>
+<div><b>Month 4</b><br>Compare temperature logs; improve insulation and cooling.</div>
+<div><b>Month 5–6</b><br>Share finished compost with local gardens; report findings.</div>
+</div></div>
+<div class="rv"><h3>What we would measure</h3>
+<div class="facts"><div><b>°C</b>chamber temperature</div><div><b>Days</b>heat over time</div><div><b>kg</b>waste diverted</div></div>
+<p>Why it matters in Kolkata: the city's hot, humid climate speeds up decomposition, and its waste is largely organic. Both help a heat-recovery demo.</p>
+<p class="note">This is a proposed scenario for illustration, not a completed trial. Figures marked approx. are rounded public estimates, so please check them against current sources before presenting.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<h2 class="rv">WHY IT'S DIFFERENT</h2>
+<div class="two rv">
+<div class="card"><h3>Innovation</h3><p>Combines organic-waste management with energy recovery. Waste isn't only something to dispose of. It's a heat source.</p></div>
+<div class="card"><h3>Cost-effective</h3><p>The waste provides the heat, so no extra fuel is needed. The parts are inexpensive and easy to find.</p></div>
+<div class="card"><h3>Social impact</h3><p>Encourages waste segregation and awareness about the circular economy in homes, schools, restaurants and housing societies.</p></div>
+</div>
+</section>
+
+<section id="faq">
+<h2 class="rv">QUESTIONS</h2>
+<div class="rv">
+<details><summary>How much electricity does it make?</summary><p>Only a small amount. Our model is a demonstration of the principle, not a power source.</p></details>
+<details><summary>What's the Seebeck effect?</summary><p>When two sides of a thermoelectric material are at different temperatures, a voltage appears across it.</p></details>
+<details><summary>How could it improve?</summary><p>Better insulation, better heat exchangers and more effective cooling would widen the temperature difference and recover more energy.</p></details>
+<details><summary>Can I do this at home?</summary><p>Start with the easy part: segregate your wet waste and compost it.</p></details>
+</div>
+</section>
+
+<footer id="team">
+<span class="tag">REDUCE. REUSE. RETHINK.</span>
+<div class="big" style="margin-top:14px">TOGETHER FOR A WASTE-FREE FUTURE</div>
+<p style="font-size:24px">Made by <b>Cygnus MS Team 1</b></p><div class="parts" style="justify-content:center;margin-bottom:26px"><span>Kresha Choudhary</span><span>Nishka Bhalotia</span><span>Vaani Goyal</span><span>Aarush Juneja</span></div>
+
+</footer>
+
+<script>
+(function(){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+// counters
+var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target,n=+el.dataset.n,t=0;var id=setInterval(function(){t+=Math.max(1,n/30);if(t>=n){t=n;clearInterval(id)}el.textContent=Math.round(t)},30);co.unobserve(el)})});
+document.querySelectorAll('[data-n]').forEach(function(el){co.observe(el)});
+// steps
+var st=document.querySelectorAll('.step'),tx=document.getElementById('stepText');
+st.forEach(function(s){s.addEventListener('click',function(){st.forEach(function(x){x.classList.remove('on')});s.classList.add('on');tx.textContent=s.dataset.t})});
+// simulator
+var sw=document.getElementById('sw');
+function upd(){var w=+sw.value,d=Math.max(0,w-30),v=127*0.0004*d*0.6;
+document.getElementById('tw').textContent=w;document.getElementById('dT').textContent=d;document.getElementById('vv').textContent=v.toFixed(2);
+document.getElementById('bar').style.width=Math.min(100,v/1.07*100)+'%';
+document.getElementById('verdict').textContent=d<5?'Barely any difference, so almost no voltage.':d<20?'A small gap gives a small voltage.':'A bigger gap gives more voltage. That is why insulation and cooling matter.'}
+sw.oninput=upd;upd();
+})();
+</script>
+</body>
+</html>
